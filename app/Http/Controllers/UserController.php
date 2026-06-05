@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -45,6 +46,7 @@ class UserController extends Controller
         //         'status' => 'Single'
         //     ],
         // ];
+        Log::info($user);
 
 
         return view('test', compact('user', 'products'));
