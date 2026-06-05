@@ -84,6 +84,8 @@ Route::get('user/{age}', function ($age) {
 Route::get('/admin/', function () {
     return view('welcome');
 });
+// Route::get('/haha',function())
+
 
 
 Route::get('/user', [UserController::class, 'index']);
