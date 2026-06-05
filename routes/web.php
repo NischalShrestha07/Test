@@ -46,6 +46,14 @@ Route::get('/hello', function () {
     ";
 });
 
+
+
+
+
+
+
+// hehejksbdbs bewobdhw
+
 // slug->Apple Mobile      apple-mobile
 Route::get('product/{id}', function ($id) {
     return $id;
