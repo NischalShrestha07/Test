@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('test');
-});
+// Route::get('/', function () {
+//     return view('test');
+// });
 
 
 Route::get('/hello', function () {
@@ -96,4 +97,11 @@ Route::get('/admin/', function () {
 
 
 
-Route::get('/user', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+
+
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('profile/store', [ProfileController::class, 'store'])->name('profile.store');
+// Route::put('/')

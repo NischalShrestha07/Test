@@ -10,12 +10,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        // $users = [
-        //     'name' => "Hulas",
-        //     "salary" => 120000,
-        //     'age' => 40,
-        //     'status' => 'Married'
-        // ];
+        $tests = [
+            'name' => "Hulas",
+            "salary" => 120000,
+            'age' => 40,
+            'status' => 'Married'
+        ];
 
         $user = User::all();
         // return $user;
@@ -49,6 +49,11 @@ class UserController extends Controller
         Log::info($user);
 
 
-        return view('test', compact('user', 'products'));
+        return view('test', compact('user', 'products', 'tests'));
     }
+
+
+    // public function add() {
+    //     return 
+    // }
 }

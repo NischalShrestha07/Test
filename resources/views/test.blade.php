@@ -13,7 +13,7 @@
 <body>
 
 
-    <div class="container">
+    {{-- <div class="container">
         <form>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -30,7 +30,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div>
+    </div> --}}
     <table class="card">
         <thead>
             <th>ID</th>
@@ -44,7 +44,7 @@
             <th>Updated At</th>
             <th>Action</th>
         </thead>
-        <tbody>
+        {{-- <tbody>
             <tr>
                 @foreach($user as $item)
                 <td>{{$item->id}}</td>
@@ -60,6 +60,13 @@
             </tr>
 
 
+        </tbody> --}}
+        <tbody>
+            <tr>
+                @foreach($tests as $item)
+                <td>{{$item}}</td>
+                @endforeach
+            </tr>
         </tbody>
     </table>
 
