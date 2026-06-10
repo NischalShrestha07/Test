@@ -8,10 +8,19 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
-    // OOP=>Pbject oriented programming
+
+
     public function index()
     {
-        return view('profile');
+        $users = Profile::all(); //ORM->Object Relation Mapping
+        // return $users;
+        return view('profileIndex', compact('users'));
+    }
+
+    // OOP=>Pbject oriented programming
+    public function create()
+    {
+        return view('create');
     }
 
 
@@ -36,18 +45,85 @@ class ProfileController extends Controller
         );
 
         $profile = new Profile();
-        $profile->name = $request->name;
-        $profile->age = $request->age;
-        $profile->fatherName = $request->fatherName;
-        $profile->motherName = $request->motherName;
-        $profile->save();
+        // $profile->name = $request->name;
+        // $profile->age = $request->age;
+        // $profile->fatherName = $request->fatherName;
+        // $profile->motherName = $request->motherName;
+        // $profile->save();
 
-        return redirect()->route('user.index');
+        $profile->create([
+            'name' => $request->name,
+            'age' => $request->age,
+            'fatherName' => $request->fatherName,
+            'motherName' => $request->motherName,
+        ]);
+
+        return redirect()->route('profile.index')->with('message', 'Profile Created Successfully....');
         // return redirect()->back();
 
         //create complete vayo
 
         // return "Validation Passed successfully.....";
 
+    }
+
+
+    public function show($id)
+    {
+
+        // return $id;
+
+        $profile = Profile::find($id);
+        // return $profile;
+
+        return view('show', compact('profile'));
+    }
+
+    public function edit($id)
+    {
+        $profile = Profile::find($id);
+        return view('edit', compact('profile'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // return 'Update function call vayo.';
+        // return $id;
+        $request->validate([
+            'name' => 'required|string|min:4',
+            'age' => 'required|numeric|max:120',
+            'fatherName' => 'required|string|min:4',
+            'motherName' => 'required|string|min:4'
+        ], [
+            'name.required' => 'nam hal vai'
+        ]);
+
+        // return 'Valdiated successsfully./...';
+        $profile = Profile::find($id);
+        // $profile->name = $request->name;
+        // $profile->age = $request->age;
+        // $profile->fatherName = $request->fatherName;
+        // $profile->motherName = $request->motherName;
+        // $profile->save();
+
+        $profile->update([
+            'name' => $request->name,
+            'age' => $request->age,
+            'fatherName' => $request->fatherName,
+            'motherName' => $request->motherName,
+        ]);
+
+        return redirect()->route('profile.index');
+        // return $profile;
+    }
+
+    public function delete($id)
+    {
+
+        $haha = Profile::find($id);
+        $haha->delete();
+
+        return redirect()->route('profile.index')->with('message', 'Profile Deleted Sucessfully.');
+        // return $haha;
     }
 }

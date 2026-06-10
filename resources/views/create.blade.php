@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Create Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/index.css') }}">
 </head>
@@ -15,13 +15,25 @@
         margin-top: 15px;
         /* background-color: green; */
     }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
 
 <body>
 
     <div class="container card">
-        <h1 class="text-center">Profile</h1>
+        <div class="nav">
+            <h2 style="margin-bottom: 25px;">Create User</h2>
+
+            <a class="btn btn-primary" href="{{route('profile.index')}}">Back</a>
+
+        </div>
         <form action="{{route('profile.store')}}" method="POST">
+            @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <input type="text" name="name" value="{{old('name')}}" placeholder="Name" class="form-control"

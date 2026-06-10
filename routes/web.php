@@ -102,6 +102,12 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
 
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-Route::post('profile/store', [ProfileController::class, 'store'])->name('profile.store');
-// Route::put('/')
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('', [ProfileController::class, 'index'])->name('index');
+    Route::get('/create', [ProfileController::class, 'create'])->name('create');
+    Route::post('/store', [ProfileController::class, 'store'])->name('store');
+    Route::get('/show/{id}', [ProfileController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [ProfileController::class, 'update'])->name('update');
+    Route::get('/delete/{id}', [ProfileController::class, 'delete'])->name('delete');
+});
