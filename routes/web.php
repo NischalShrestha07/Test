@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -103,11 +104,14 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
 
 Route::prefix('profile')->name('profile.')->group(function () {
-    Route::get('', [ProfileController::class, 'index'])->name('index');
-    Route::get('/create', [ProfileController::class, 'create'])->name('create');
-    Route::post('/store', [ProfileController::class, 'store'])->name('store');
-    Route::get('/show/{id}', [ProfileController::class, 'show'])->name('show');
-    Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('edit');
-    Route::put('/update/{id}', [ProfileController::class, 'update'])->name('update');
-    Route::get('/delete/{id}', [ProfileController::class, 'delete'])->name('delete');
+    Route::get('', [ProfileController::class, 'index'])->name('index'); //page
+    Route::get('/create', [ProfileController::class, 'create'])->name('create'); //page
+    Route::post('/store', [ProfileController::class, 'store'])->name('store'); //store
+    Route::get('/show/{id}', [ProfileController::class, 'show'])->name('show'); //page
+    Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('edit'); //page
+    Route::put('/update/{id}', [ProfileController::class, 'update'])->name('update'); //update
+    Route::get('/delete/{id}', [ProfileController::class, 'delete'])->name('delete'); //delete
 });
+
+
+Route::resource('posts', PostController::class);
